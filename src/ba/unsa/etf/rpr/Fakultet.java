@@ -8,7 +8,9 @@ public class Fakultet {
     ArrayList<CiklusStudija> ciklusiStudija;
     public Fakultet() {
     }
-    
+    public void dodajCiklusStudija( CiklusStudija ciklusStudija){
+        ciklusiStudija.add(ciklusStudija);
+    }
 
 
 }
