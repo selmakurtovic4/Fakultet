@@ -36,8 +36,8 @@ public class UgovorZaStudenta {
         this.izborniPredmeti = izborniPredmeti;
     }
 
-    public Integer getSifraSemestra() {
-        return sifraSemestra;
+    public Semestar dajSemestar(){
+        return ciklusStudija.semestri.stream().filter(s->s.getIdSemestra().equals(sifraSemestra) ).findFirst().get();
     }
 
     public void setSifraSemestra(Integer sifraSemestra) {
