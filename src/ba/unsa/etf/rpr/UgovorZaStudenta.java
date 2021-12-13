@@ -9,7 +9,7 @@ public class UgovorZaStudenta {
     private Integer sifraSemestra;
    public boolean provjera(Predmet predmet){
        if(izborniPredmeti.stream()
-               .reduce(0, (a,b)->a+ b.getBrojCasovaMjesecno(), Integer::sum)+predmet.getBrojCasovaMjesecno()<=30)
+               .reduce(0, (a,b)->a+ b.getBrojCasovaMjesecno(), Integer::sum)+predmet.getBrojCasovaMjesecno()<30)
            return true;
        return false;
    }
@@ -23,7 +23,9 @@ public class UgovorZaStudenta {
     public UgovorZaStudenta(Student student) {
         this.student = student;
     }
-
+    public void izbaciPredmet(Predmet predmet){
+       izborniPredmeti.remove(predmet);
+    }
     public Student getStudent() {
         return student;
     }
