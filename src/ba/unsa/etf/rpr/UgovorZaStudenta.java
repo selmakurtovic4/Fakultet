@@ -2,13 +2,13 @@ package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
 
-public class UpisniList {
+public class UgovorZaStudenta {
     Student student;
     CiklusStudija ciklusStudija;
     ArrayList<Predmet> izborniPredmeti;
     Integer sifraSemestra;
 
-    public UpisniList(Student student) {
+    public UgovorZaStudenta(Student student) {
         this.student = student;
     }
 
