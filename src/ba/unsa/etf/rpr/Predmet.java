@@ -1,9 +1,10 @@
 package ba.unsa.etf.rpr;
 
 public class Predmet {
-    Integer sifraPredmeta;
-    String naziv;
-    Integer bodovi;
+    private Integer sifraPredmeta;
+    private String naziv;
+    private Integer bodovi;
+    private Integer brojCasovaMjesecno;
 
 
     public Predmet(Integer sifraPredmeta, String naziv, Integer bodovi) {
@@ -37,4 +38,7 @@ public class Predmet {
         this.bodovi = bodovi;
     }
 
+    public Integer getBrojCasovaMjesecno() {
+        return brojCasovaMjesecno;
+    }
 }
