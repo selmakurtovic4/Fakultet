@@ -6,11 +6,9 @@ public class Fakultet {
     ArrayList<UgovorZaProfesora>profesori;
     ArrayList<UgovorZaStudenta> studenti;
     ArrayList<CiklusStudija> ciklusiStudija;
-
-
-
-
     public Fakultet() {
     }
+    
+
 
 }

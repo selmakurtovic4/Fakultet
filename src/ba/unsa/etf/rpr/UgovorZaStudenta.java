@@ -3,11 +3,23 @@ package ba.unsa.etf.rpr;
 import java.util.ArrayList;
 
 public class UgovorZaStudenta {
-    Student student;
-    CiklusStudija ciklusStudija;
-    ArrayList<Predmet> izborniPredmeti;
-    Integer sifraSemestra;
+    private Student student;
+    private  CiklusStudija ciklusStudija;
+    private ArrayList<Predmet> izborniPredmeti;
+    private Integer sifraSemestra;
+   public boolean provjera(Predmet predmet){
+       if(izborniPredmeti.stream()
+               .reduce(0, (a,b)->a+ b.getBrojCasovaMjesecno(), Integer::sum)+predmet.getBrojCasovaMjesecno()<=30)
+           return true;
+       return false;
+   }
+    public void dodajIzborniPredmet(Predmet predmet){
+       if(provjera(predmet))
+           izborniPredmeti.add(predmet);
+       else
+           throw new IllegalArgumentException("Suma je veca od 30! Izaberite drugi predmet!");
 
+    }
     public UgovorZaStudenta(Student student) {
         this.student = student;
     }
@@ -30,10 +42,6 @@ public class UgovorZaStudenta {
 
     public ArrayList<Predmet> getIzborniPredmeti() {
         return izborniPredmeti;
-    }
-
-    public void setIzborniPredmeti(ArrayList<Predmet> izborniPredmeti) {
-        this.izborniPredmeti = izborniPredmeti;
     }
 
     public Semestar dajSemestar(){

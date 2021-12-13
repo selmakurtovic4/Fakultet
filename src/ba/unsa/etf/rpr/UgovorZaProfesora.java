@@ -17,6 +17,7 @@ public class UgovorZaProfesora {
 
     public void dodajPredmet(Predmet predmet) {
         predmeti.add(predmet);
+        izracunajNormu();
     }
 
     public Integer izracunajNormu() {
@@ -31,12 +32,16 @@ public class UgovorZaProfesora {
                 norma = norma + (predmet.getBrojCasovaMjesecno() * 12);
                 //ako je izborni
             else if (fakultet.studenti.stream()
-                    .anyMatch(ugovor -> ugovor.izborniPredmeti.contains(predmet)))
+                    .anyMatch(ugovor -> ugovor.getIzborniPredmeti().contains(predmet)))
                 norma = norma + (predmet.getBrojCasovaMjesecno() * 12);
 
 
         }
         return norma;
 
+    }
+
+    public Integer getNorma() {
+        return norma;
     }
 }
