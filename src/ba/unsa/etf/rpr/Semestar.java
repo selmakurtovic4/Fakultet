@@ -25,4 +25,20 @@ public class Semestar
     public ArrayList<Predmet> getIzborniPredmeti() {
         return izborniPredmeti;
     }
+    public void dodajObavezniPredmet(Predmet predmet){
+        obavezniPredmeti.stream()
+                .filter(p->p.equals(predmet))
+                .findFirst()
+                .ifPresentOrElse( p->{ throw  new IllegalArgumentException("Taj predmet je vec prisutan!"); },
+                        ()->obavezniPredmeti.add(predmet));
+    }
+    public void dodajIzborniPredmet(Predmet predmet){
+        izborniPredmeti.stream()
+                .filter(p->p.equals(predmet))
+                .findFirst()
+                .ifPresentOrElse( p->{ throw  new IllegalArgumentException("Taj predmet je vec prisutan!"); },
+                        ()->izborniPredmeti.add(predmet));
+    }
+
+
 }
