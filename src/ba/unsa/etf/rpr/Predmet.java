@@ -4,7 +4,7 @@ public class Predmet {
     Integer sifraPredmeta;
     String naziv;
     Integer bodovi;
-    Profesor predmetniNastavnik;
+
 
     public Predmet(Integer sifraPredmeta, String naziv, Integer bodovi) {
         this.sifraPredmeta = sifraPredmeta;
@@ -37,11 +37,4 @@ public class Predmet {
         this.bodovi = bodovi;
     }
 
-    public Profesor getPredmetniNastavnik() {
-        return predmetniNastavnik;
-    }
-
-    public void setPredmetniNastavnik(Profesor predmetniNastavnik) {
-        this.predmetniNastavnik = predmetniNastavnik;
-    }
 }
