@@ -12,6 +12,15 @@ public class Fakultet {
     private ArrayList<Profesor>profesori;
     public Fakultet() {
     }
+    public void zaposliProfesora(Profesor profesor, ArrayList<Predmet> predmeti){
+        UgovorZaProfesora ugovor=new UgovorZaProfesora(profesor, this);
+        ugovor.setPredmeti(predmeti);
+
+    }
+    public void dodajNoviPredmetProfesoru(Profesor profesor, Predmet predmet){
+        ugovoriZaProfesore.stream().filter(ugovorZaProfesora -> ugovorZaProfesora.getProfesor().equals(profesor))
+                .findFirst().get().dodajPredmet(predmet);
+    }
     public void dodajCiklusStudija( CiklusStudija ciklusStudija){
         ciklusiStudija.add(ciklusStudija);
     }

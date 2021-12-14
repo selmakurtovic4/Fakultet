@@ -17,7 +17,7 @@ public class UgovorZaProfesora {
 
     public void dodajPredmet(Predmet predmet) {
         predmeti.add(predmet);
-        izracunajNormu();
+       norma= izracunajNormu();
     }
 
     private Integer izracunajNormu() {
@@ -51,5 +51,10 @@ public class UgovorZaProfesora {
 
     public Profesor getProfesor() {
         return profesor;
+    }
+
+    public void setPredmeti(ArrayList<Predmet> predmeti) {
+        this.predmeti = predmeti;
+       norma= izracunajNormu();
     }
 }
