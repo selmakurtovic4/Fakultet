@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class Fakultet {
@@ -26,6 +27,12 @@ public class Fakultet {
                 .filter(ugovor -> ugovor.getNorma() > 150)
                 .map(ugovor -> ugovor.getProfesor())
                 .collect(Collectors.toCollection(ArrayList::new));
+
+    }
+    public void sortirajProfesorePoNormi(){
+        profesori.stream()
+                .map(profesor -> profesor.getUgovorZaProfesora())
+                .sorted(Comparator.comparingInt(UgovorZaProfesora::getNorma));
 
     }
 
