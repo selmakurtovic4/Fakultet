@@ -21,6 +21,14 @@ public class Fakultet {
                .collect(Collectors.toCollection(ArrayList::new));
 
     }
+    public ArrayList<Profesor> dajProfesorePrekoNorme(){
+        return ugovoriZaProfesore.stream()
+                .filter(ugovor -> ugovor.getNorma() > 150)
+                .map(ugovor -> ugovor.getProfesor())
+                .collect(Collectors.toCollection(ArrayList::new));
+
+    }
+
 
 
     public ArrayList<UgovorZaProfesora> getUgovoriZaProfesore() {
