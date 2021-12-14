@@ -23,23 +23,27 @@ public class UgovorZaProfesora {
     public Integer izracunajNormu() {
         int norma = 0;
 
-        for (var predmet : predmeti) {
-            //ako je predmet medju obaveznim
-            if (fakultet.ciklusiStudija.stream()
-                    .map(ciklusStudija -> ciklusStudija.getSemestri())
-                    .flatMap(ArrayList<Semestar>::stream)
-                    .anyMatch(semestar -> semestar.getObavezniPredmeti().contains(predmet)))
-                norma = norma + (predmet.getBrojCasovaMjesecno() * 12);
-                //ako je izborni
-            else if (fakultet.studenti.stream()
-                    .anyMatch(ugovor -> ugovor.getIzborniPredmeti().contains(predmet)))
+        for (var predmet : predmeti)
+
+            if (jeLiPredmetObavezan(predmet) || jeLiPredmetIzborniiZauzet(predmet))
                 norma = norma + (predmet.getBrojCasovaMjesecno() * 12);
 
 
-        }
         return norma;
 
     }
+   private boolean jeLiPredmetObavezan(Predmet predmet){
+       return fakultet.ciklusiStudija.stream()
+               .map(ciklusStudija -> ciklusStudija.getSemestri())
+               .flatMap(ArrayList<Semestar>::stream)
+               .anyMatch(semestar -> semestar.getObavezniPredmeti().contains(predmet));
+
+
+   }
+   private boolean jeLiPredmetIzborniiZauzet(Predmet predmet){
+        return fakultet.studenti.stream()
+                .anyMatch(ugovor -> ugovor.getIzborniPredmeti().contains(predmet));
+   }
 
     public Integer getNorma() {
         return norma;
