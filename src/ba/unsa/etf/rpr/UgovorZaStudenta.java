@@ -5,23 +5,28 @@ import java.util.ArrayList;
 public class UgovorZaStudenta {
     private Student student;
     private  CiklusStudija ciklusStudija;
-    private ArrayList<Predmet> izborniPredmeti;
+    private ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
     private Integer sifraSemestra;
-   public boolean provjera(Predmet predmet){
-       if(izborniPredmeti.stream()
-               .reduce(0, (a,b)->a+ b.getBrojCasovaMjesecno(), Integer::sum)+predmet.getBrojCasovaMjesecno()<30)
-           return true;
-       return false;
+   public Integer dajSumuBodova(){
+       return izborniPredmeti.stream().reduce(0, (a,b)->a+ b.getBodovi(), Integer::sum);
+
    }
     public void dodajIzborniPredmet(Predmet predmet){
-       if(provjera(predmet))
-           izborniPredmeti.add(predmet);
-       else
+       Integer suma=dajSumuBodova()+predmet.getBodovi();
+       if(suma>30) {
            throw new IllegalArgumentException("Suma je veca od 30! Izaberite drugi predmet!");
+       }
+       else if(suma==30)
+           System.out.println("Imate tacno 30 bodova!");
+       izborniPredmeti.add(predmet);
+
 
     }
     public UgovorZaStudenta(Student student) {
         this.student = student;
+    }
+    public UgovorZaStudenta(){
+
     }
     public void izbaciPredmet(Predmet predmet){
        izborniPredmeti.remove(predmet);
@@ -47,7 +52,7 @@ public class UgovorZaStudenta {
     }
 
     public Semestar dajSemestar(){
-        return ciklusStudija.semestri.stream().filter(s->s.getIdSemestra().equals(sifraSemestra) ).findFirst().get();
+        return ciklusStudija.getSemestri().stream().filter(s->s.getIdSemestra().equals(sifraSemestra) ).findFirst().get();
     }
 
     public void setSifraSemestra(Integer sifraSemestra) {

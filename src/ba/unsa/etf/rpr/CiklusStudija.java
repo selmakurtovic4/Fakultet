@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 
 public class CiklusStudija {
-    final Integer sifra;
-    String naziv;
-    ArrayList<Semestar> semestri;
+    private Integer sifra;
+    private String naziv;
+    private ArrayList<Semestar> semestri;
 
     public CiklusStudija(Integer sifra, String naziv) {
         this.sifra = sifra;
