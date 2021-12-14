@@ -3,6 +3,7 @@ package ba.unsa.etf.rpr;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UgovorZaProfesora {
     private Profesor profesor;
@@ -13,6 +14,7 @@ public class UgovorZaProfesora {
     public UgovorZaProfesora(Profesor profesor, Fakultet fakultet) {
         this.profesor = profesor;
         this.fakultet = fakultet;
+        predmeti=new ArrayList<>();
     }
 
     public void dodajPredmet(Predmet predmet) {
@@ -57,4 +59,16 @@ public class UgovorZaProfesora {
         this.predmeti = predmeti;
        norma= izracunajNormu();
     }
+
+    @Override
+    public String toString() {
+       String ispis= "UgovorZaProfesora:\n" +
+                "Ime:" + profesor.getIme() +
+                "\nPrezime: "+profesor.getPrezime();
+        ispis+= "\nVasi predmeti su: \n" + predmeti.stream().map(predmet -> predmet.toString()).collect(Collectors.joining("\n")) ;
+           ispis+=     "\nnorma:" + norma ;
+
+           return ispis;
+    }
+
 }
