@@ -27,6 +27,10 @@ public class Fakultet {
                 .findFirst()
                 .ifPresent(ugovor->ugovoriZaProfesore.remove(ugovor));
     }
+    public void upisiStudenta(Student student, CiklusStudija ciklusStudija,Integer sifraSemestra){
+
+
+    }
     public void dodajCiklusStudija( CiklusStudija ciklusStudija){
         ciklusiStudija.add(ciklusStudija);
     }
