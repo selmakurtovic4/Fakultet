@@ -21,6 +21,12 @@ public class Fakultet {
         ugovoriZaProfesore.stream().filter(ugovorZaProfesora -> ugovorZaProfesora.getProfesor().equals(profesor))
                 .findFirst().get().dodajPredmet(predmet);
     }
+    public void otpustiProfesora(Profesor profesor){
+        ugovoriZaProfesore.stream()
+                .filter(ugovor->ugovor.getProfesor().equals(profesor))
+                .findFirst()
+                .ifPresent(ugovor->ugovoriZaProfesore.remove(ugovor));
+    }
     public void dodajCiklusStudija( CiklusStudija ciklusStudija){
         ciklusiStudija.add(ciklusStudija);
     }
