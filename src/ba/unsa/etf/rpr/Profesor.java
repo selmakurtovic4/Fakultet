@@ -3,7 +3,7 @@ package ba.unsa.etf.rpr;
 public class Profesor {
     private String ime;
     private String prezime;
-    private UgovorZaProfesora ugovorZaProfesora;
+  //  private UgovorZaProfesora ugovorZaProfesora;
 
 
     public Profesor(String ime, String prezime, Integer norma) {
@@ -29,11 +29,11 @@ public class Profesor {
     }
 
 
-    public UgovorZaProfesora getUgovorZaProfesora() {
+    /*public UgovorZaProfesora getUgovorZaProfesora() {
         return ugovorZaProfesora;
     }
 
     public void setUgovorZaProfesora(UgovorZaProfesora ugovorZaProfesora) {
         this.ugovorZaProfesora = ugovorZaProfesora;
-    }
+    }*/
 }

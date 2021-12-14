@@ -30,9 +30,10 @@ public class Fakultet {
 
     }
     public void sortirajProfesorePoNormi(){
-        profesori.stream()
-                .map(profesor -> profesor.getUgovorZaProfesora())
-                .sorted(Comparator.comparingInt(UgovorZaProfesora::getNorma));
+              profesori=ugovoriZaProfesore.stream()
+                      .sorted(Comparator.comparingInt(UgovorZaProfesora::getNorma))
+                      .map(ugovorZaProfesora -> ugovorZaProfesora.getProfesor())
+                      .collect(Collectors.toCollection(ArrayList::new));
 
     }
 
