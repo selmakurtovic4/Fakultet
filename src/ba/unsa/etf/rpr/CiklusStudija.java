@@ -32,4 +32,7 @@ public class CiklusStudija {
                 .findFirst()
                 .get();
     }
+    public void dodajSemestar(Semestar semestar){
+        semestri.add(semestar);
+    }
 }
