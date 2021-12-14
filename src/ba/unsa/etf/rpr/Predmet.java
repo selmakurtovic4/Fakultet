@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr;
 
+import java.util.Objects;
+
 public class Predmet {
     private Integer sifraPredmeta;
     private String naziv;
@@ -41,5 +43,24 @@ public class Predmet {
 
     public Integer getBrojCasova() {
         return brojCasova;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Predmet predmet = (Predmet) o;
+        return Objects.equals(sifraPredmeta, predmet.sifraPredmeta) && Objects.equals(naziv, predmet.naziv) && Objects.equals(bodovi, predmet.bodovi) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sifraPredmeta, naziv, bodovi, brojCasova);
+    }
+
+    @Override
+    public String toString() {
+        return sifraPredmeta +" "+ naziv + " "+bodovi+" ESCT "+"brojCasova: "+brojCasova;
+
     }
 }
