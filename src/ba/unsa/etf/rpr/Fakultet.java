@@ -10,16 +10,24 @@ public class Fakultet {
     private ArrayList<CiklusStudija> ciklusiStudija;
     private ArrayList<Student> studenti;
     private ArrayList<Profesor>profesori;
-    public Fakultet() {
+    public Fakultet(){
+        ugovoriZaProfesore=new ArrayList<>();
+        ugovoriZaStudente=new ArrayList<>();
+        ciklusiStudija=new ArrayList<>();
+        studenti=new ArrayList<>();
+        profesori=new ArrayList<>();
     }
-    public void zaposliProfesora(Profesor profesor, ArrayList<Predmet> predmeti){
+    public void zaposliProfesora(Profesor profesor ){
         UgovorZaProfesora ugovor=new UgovorZaProfesora(profesor, this);
-        ugovor.setPredmeti(predmeti);
+        ugovoriZaProfesore.add(ugovor);
+        profesori.add(profesor);
 
     }
     public void dodajNoviPredmetProfesoru(Profesor profesor, Predmet predmet){
         ugovoriZaProfesore.stream().filter(ugovorZaProfesora -> ugovorZaProfesora.getProfesor().equals(profesor))
-                .findFirst().get().dodajPredmet(predmet);
+                .findFirst().ifPresentOrElse(ugovorZaProfesora -> ugovorZaProfesora.dodajPredmet(predmet),
+                        ()->{ throw new IllegalArgumentException("Ne postoji taj profesor!"); }     );
+                //.get().dodajPredmet(predmet);
     }
     public void otpustiProfesora(Profesor profesor){
         ugovoriZaProfesore.stream()
@@ -77,4 +85,12 @@ public class Fakultet {
     public ArrayList<Profesor> getProfesori() {
         return profesori;
     }
+    public UgovorZaProfesora dajUgovorZaProfesora(Profesor profesor) throws Exception{
+        return ugovoriZaProfesore.stream()
+                .filter(ugovor->ugovor.getProfesor().equals(profesor)).findFirst()
+                .orElseThrow(()->new Exception("Nema tog profesora!"));
+        }
+
+   // public ArrayList<Student> dajStudentePoPredmetu
+
 }
