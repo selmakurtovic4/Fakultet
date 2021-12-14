@@ -4,13 +4,14 @@ public class Predmet {
     private Integer sifraPredmeta;
     private String naziv;
     private Integer bodovi;
-    private Integer brojCasovaMjesecno;
+    private Integer brojCasova;
 
 
-    public Predmet(Integer sifraPredmeta, String naziv, Integer bodovi) {
+    public Predmet(Integer sifraPredmeta, String naziv, Integer bodovi, Integer brojCasova) {
         this.sifraPredmeta = sifraPredmeta;
         this.naziv = naziv;
         this.bodovi = bodovi;
+        this.brojCasova=brojCasova;
     }
 
 
@@ -38,7 +39,7 @@ public class Predmet {
         this.bodovi = bodovi;
     }
 
-    public Integer getBrojCasovaMjesecno() {
-        return brojCasovaMjesecno;
+    public Integer getBrojCasova() {
+        return brojCasova;
     }
 }

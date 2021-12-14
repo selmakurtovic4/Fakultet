@@ -26,7 +26,7 @@ public class UgovorZaProfesora {
         for (var predmet : predmeti)
 
             if (jeLiPredmetObavezan(predmet) || jeLiPredmetIzborniiZauzet(predmet))
-                norma = norma + (predmet.getBrojCasovaMjesecno() * 12);
+                norma = norma + (predmet.getBrojCasova() );
 
 
         return norma;
