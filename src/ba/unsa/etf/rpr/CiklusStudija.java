@@ -25,4 +25,11 @@ public class CiklusStudija {
     public ArrayList<Semestar> getSemestri() {
         return semestri;
     }
+    public Semestar dajSemestarPoSifri(Integer sifra){
+        return semestri
+                .stream()
+                .filter(s->s.getIdSemestra().equals(sifra))
+                .findFirst()
+                .get();
+    }
 }

@@ -48,4 +48,5 @@ public class UgovorZaProfesora {
     public Integer getNorma() {
         return norma;
     }
+
 }

@@ -8,8 +8,10 @@ public class UgovorZaStudenta {
     private ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
     private Integer sifraSemestra;
    public Integer dajSumuBodova(){
-       return izborniPredmeti.stream().reduce(0, (a,b)->a+ b.getBodovi(), Integer::sum);
-
+       int suma=izborniPredmeti.stream().reduce(0, (a,b)->a+ b.getBodovi(), Integer::sum);
+       return suma+ ciklusStudija.dajSemestarPoSifri(sifraSemestra).getObavezniPredmeti()
+               .stream().
+               reduce(0, (a,b) -> a+b.getBodovi(),Integer::sum );
    }
     public void dodajIzborniPredmet(Predmet predmet){
        Integer suma=dajSumuBodova()+predmet.getBodovi();
@@ -51,9 +53,7 @@ public class UgovorZaStudenta {
         return izborniPredmeti;
     }
 
-    public Semestar dajSemestar(){
-        return ciklusStudija.getSemestri().stream().filter(s->s.getIdSemestra().equals(sifraSemestra) ).findFirst().get();
-    }
+
 
     public void setSifraSemestra(Integer sifraSemestra) {
         this.sifraSemestra = sifraSemestra;
