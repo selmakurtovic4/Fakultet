@@ -20,7 +20,7 @@ public class UgovorZaProfesora {
         izracunajNormu();
     }
 
-    public Integer izracunajNormu() {
+    private Integer izracunajNormu() {
         int norma = 0;
 
         for (var predmet : predmeti)
@@ -33,7 +33,7 @@ public class UgovorZaProfesora {
 
     }
    private boolean jeLiPredmetObavezan(Predmet predmet){
-       return fakultet.ciklusiStudija.stream()
+       return fakultet.getCiklusiStudija().stream()
                .map(ciklusStudija -> ciklusStudija.getSemestri())
                .flatMap(ArrayList<Semestar>::stream)
                .anyMatch(semestar -> semestar.getObavezniPredmeti().contains(predmet));
@@ -41,7 +41,7 @@ public class UgovorZaProfesora {
 
    }
    private boolean jeLiPredmetIzborniiZauzet(Predmet predmet){
-        return fakultet.studenti.stream()
+        return fakultet.getUgovoriZaStudente().stream()
                 .anyMatch(ugovor -> ugovor.getIzborniPredmeti().contains(predmet));
    }
 
@@ -49,4 +49,7 @@ public class UgovorZaProfesora {
         return norma;
     }
 
+    public Profesor getProfesor() {
+        return profesor;
+    }
 }

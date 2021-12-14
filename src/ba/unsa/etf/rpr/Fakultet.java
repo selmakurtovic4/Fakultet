@@ -1,17 +1,45 @@
 package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Fakultet {
-    ArrayList<UgovorZaProfesora>profesori;
-    ArrayList<UgovorZaStudenta> studenti;
-    ArrayList<CiklusStudija> ciklusiStudija;
+    private ArrayList<UgovorZaProfesora>ugovoriZaProfesore;
+    private ArrayList<UgovorZaStudenta> ugovoriZaStudente;
+    private ArrayList<CiklusStudija> ciklusiStudija;
+    private ArrayList<Student> studenti;
+    private ArrayList<Profesor>profesori;
     public Fakultet() {
     }
     public void dodajCiklusStudija( CiklusStudija ciklusStudija){
         ciklusiStudija.add(ciklusStudija);
     }
+    public ArrayList<Profesor> dajProfesoreBezNorme(){
+       return ugovoriZaProfesore.stream()
+                .filter(ugovor -> ugovor.getNorma() < 120)
+                .map(ugovor -> ugovor.getProfesor())
+               .collect(Collectors.toCollection(ArrayList::new));
+
+    }
 
 
+    public ArrayList<UgovorZaProfesora> getUgovoriZaProfesore() {
+        return ugovoriZaProfesore;
+    }
 
+    public ArrayList<UgovorZaStudenta> getUgovoriZaStudente() {
+        return ugovoriZaStudente;
+    }
+
+    public ArrayList<CiklusStudija> getCiklusiStudija() {
+        return ciklusiStudija;
+    }
+
+    public ArrayList<Student> getStudenti() {
+        return studenti;
+    }
+
+    public ArrayList<Profesor> getProfesori() {
+        return profesori;
+    }
 }
