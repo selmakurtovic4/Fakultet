@@ -33,4 +33,9 @@ public class Student {
         this.prezime = prezime;
         this.indeks = indeks;
     }
+
+    @Override
+    public String toString() {
+        return  ime + " " + prezime + " "+ indeks+"\n";
+    }
 }
