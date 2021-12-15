@@ -6,7 +6,7 @@ public class Predmet {
     private Integer sifraPredmeta;
     private String naziv;
     private Integer bodovi;
-    private Integer brojCasova;
+    private final  Integer brojCasova;
 
 
     public Predmet(Integer sifraPredmeta, String naziv, Integer bodovi, Integer brojCasova) {
@@ -50,7 +50,7 @@ public class Predmet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Predmet predmet = (Predmet) o;
-        return Objects.equals(sifraPredmeta, predmet.sifraPredmeta) && Objects.equals(naziv, predmet.naziv) && Objects.equals(bodovi, predmet.bodovi) ;
+        return Objects.equals(sifraPredmeta, predmet.sifraPredmeta) && Objects.equals(naziv, predmet.naziv)  ;
     }
 
     @Override
