@@ -53,7 +53,23 @@ public class UgovorZaProfesora {
     public Profesor getProfesor() {
         return profesor;
     }
+    public int dajBrojStudenata(){
+        int broj=0;
+       for(var predmet: predmeti) {
+           if(jeLiPredmetObavezan(predmet))
+              broj+= fakultet.getUgovoriZaStudente()
+                       .stream()
+                       .filter(ugovor->ugovor.dajSemestar().getObavezniPredmeti().contains(predmet))
+                       .count();
+           else if(jeLiPredmetIzborniiZauzet(predmet))
+               broj+=fakultet.getUgovoriZaStudente()
+                       .stream()
+                       .filter(ugovor->ugovor.getIzborniPredmeti().contains(predmet))
+                       .count();
 
+        }
+       return broj;
+    }
     @Override
     public String toString() {
        String ispis= "UgovorZaProfesora:\n" +
