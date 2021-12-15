@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Semestar
 {
-    private Integer idSemestra;
-    private ArrayList<Predmet> obavezniPredmeti;
-    private ArrayList<Predmet> izborniPredmeti;
+    private final int idSemestra;
+    private final ArrayList<Predmet> obavezniPredmeti;
+    private final ArrayList<Predmet> izborniPredmeti;
 
     public Semestar(Integer idSemestra) {
         this.idSemestra = idSemestra;
