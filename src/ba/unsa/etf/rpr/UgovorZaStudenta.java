@@ -8,8 +8,8 @@ import java.util.Map;
 public class UgovorZaStudenta {
     private Student student;
     private  CiklusStudija ciklusStudija;
-    private ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
-    private Integer sifraSemestra;
+    private final ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
+    private int sifraSemestra;
     HashMap<Integer, Map<Predmet, Integer>> prepisOcjena;
    public Integer dajSumuBodova(){
        int suma=izborniPredmeti.stream().reduce(0, (a,b)->a+ b.getBodovi(), Integer::sum);
@@ -17,14 +17,15 @@ public class UgovorZaStudenta {
                .stream().
                reduce(0, (a,b) -> a+b.getBodovi(),Integer::sum );
    }
-    public void dodajIzborniPredmet(Predmet predmet){
-       Integer suma=dajSumuBodova()+predmet.getBodovi();
+    public void dodajIzborniPredmet(Predmet predmet)throws Exception{
+       int suma=dajSumuBodova()+predmet.getBodovi();
        if(suma>30) {
-           throw new IllegalArgumentException("Suma je veca od 30! Izaberite drugi predmet!");
+           throw new Exception("Suma je veca od 30! Izaberite drugi predmet!");
        }
        else if(suma==30)
            System.out.println("Imate tacno 30 bodova!");
        izborniPredmeti.add(predmet);
+
 
 
     }
