@@ -34,8 +34,8 @@ public class Profesor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Profesor profesor = (Profesor) o;
-        return this.ime.equalsIgnoreCase(profesor.ime) && prezime.equalsIgnoreCase(profesor.prezime)
-                && ime.trim().equals(profesor.ime.trim()) && prezime.trim().equals(profesor.prezime.trim());
+        return this.ime.trim().equalsIgnoreCase(profesor.ime.trim()) && this.prezime.trim().equalsIgnoreCase(profesor.prezime.trim());
+
     }
 
     @Override
