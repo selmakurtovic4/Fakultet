@@ -3,9 +3,9 @@ package ba.unsa.etf.rpr;
 import java.util.Objects;
 
 public class Predmet {
-    private Integer sifraPredmeta;
-    private String naziv;
-    private Integer bodovi;
+    private final Integer sifraPredmeta;
+    private final String naziv;
+    private final Integer bodovi;
     private final  Integer brojCasova;
 
 
@@ -17,29 +17,10 @@ public class Predmet {
     }
 
 
-    public Integer getSifraPredmeta() {
-        return sifraPredmeta;
-    }
-
-    public void setSifraPredmeta(Integer sifraPredmeta) {
-        this.sifraPredmeta = sifraPredmeta;
-    }
-
-    public String getNaziv() {
-        return naziv;
-    }
-
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
-    }
-
     public Integer getBodovi() {
         return bodovi;
     }
 
-    public void setBodovi(Integer bodovi) {
-        this.bodovi = bodovi;
-    }
 
     public Integer getBrojCasova() {
         return brojCasova;

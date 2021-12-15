@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class CiklusStudija {
     private final Integer sifra;
     private final String naziv;
-    private  ArrayList<Semestar> semestri;
+    private final ArrayList<Semestar> semestri;
 
     public CiklusStudija(Integer sifra, String naziv) {
         this.sifra = sifra;
@@ -14,9 +14,7 @@ public class CiklusStudija {
         this.semestri = new ArrayList<>();
     }
 
-    public Integer getSifra() {
-        return sifra;
-    }
+
 
     public String getNaziv() {
         return naziv;

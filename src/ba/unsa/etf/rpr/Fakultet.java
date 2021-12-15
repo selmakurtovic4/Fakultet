@@ -29,12 +29,6 @@ public class Fakultet {
                         ()->{ throw new IllegalArgumentException("Ne postoji taj profesor!"); }     );
                 //.get().dodajPredmet(predmet);
     }
-    /*public void otpustiProfesora(Profesor profesor){
-        ugovoriZaProfesore.stream()
-                .filter(ugovor->ugovor.getProfesor().equals(profesor))
-                .findFirst()
-                .ifPresent(ugovor->ugovoriZaProfesore.remove(ugovor));
-    }*/
 
     public UgovorZaStudenta upisiStudenta(Student student, CiklusStudija ciklusStudija,int sifraSemestra){
      UgovorZaStudenta ugovor=new UgovorZaStudenta(student);
@@ -50,28 +44,28 @@ public class Fakultet {
     public ArrayList<Profesor> dajProfesoreBezNorme(){
        return ugovoriZaProfesore.stream()
                 .filter(ugovor -> ugovor.getNorma() < 120)
-                .map(ugovor -> ugovor.getProfesor())
+                .map(UgovorZaProfesora::getProfesor)
                .collect(Collectors.toCollection(ArrayList::new));
 
     }
     public ArrayList<Profesor> dajProfesorePrekoNorme(){
         return ugovoriZaProfesore.stream()
                 .filter(ugovor -> ugovor.getNorma() > 150)
-                .map(ugovor -> ugovor.getProfesor())
+                .map(UgovorZaProfesora::getProfesor)
                 .collect(Collectors.toCollection(ArrayList::new));
 
     }
     public void sortirajProfesorePoNormi(){
               profesori=ugovoriZaProfesore.stream()
-                      .sorted(Comparator.comparingInt(ugovorZaProfesora1 -> ugovorZaProfesora1.getNorma()))
-                      .map(ugovorZaProfesora -> ugovorZaProfesora.getProfesor())
+                      .sorted(Comparator.comparingInt(UgovorZaProfesora::getNorma))
+                      .map(UgovorZaProfesora::getProfesor)
                       .collect(Collectors.toCollection(ArrayList::new));
 
     }
     public void sortirajProfesorePoBrojuStudenata(){
         profesori=ugovoriZaProfesore.stream()
-                .sorted(Comparator.comparingInt(ugovor -> ugovor.dajBrojStudenata()))
-                .map(ugovorZaProfesora -> ugovorZaProfesora.getProfesor())
+                .sorted(Comparator.comparingInt(UgovorZaProfesora::dajBrojStudenata))
+                .map(UgovorZaProfesora::getProfesor)
                 .collect(Collectors.toCollection(ArrayList::new));
 
     }

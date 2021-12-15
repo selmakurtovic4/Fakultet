@@ -1,7 +1,5 @@
 package ba.unsa.etf.rpr;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -18,6 +16,7 @@ public class Main {
         for(;;) {
             System.out.println("Dobrodosli! Nalazite se na odsjeku 'Racunarstvo i informatika' u prvom ciklusu! Ostali su u pripremi.\n");
             System.out.println("Izaberite Vasu poziciju unosom odgovarajuceg broja!\n");
+            System.out.println("0 Izlaz iz programa");
             System.out.println("1.Student\n");
             System.out.println("2.Profesor\n");
             System.out.println("3.Studentska sluzba\n");
@@ -25,6 +24,9 @@ public class Main {
             Scanner unos = new Scanner(System.in);
             String izbor = unos.nextLine();
             switch (izbor) {
+                case "0" -> {
+                    return ;
+                }
                 case "1" -> dajMeniStudenta();
                 case "2" -> dajMeniProfesora();
                 case "3" -> dajMeniStudentskeSluzbe();
@@ -100,12 +102,12 @@ public class Main {
                     break;
                 case 3:
                     System.out.println( elektrotehnickiFakultet.dajProfesoreBezNorme().stream()
-                            .map(s->s.toString())
+                            .map(Profesor::toString)
                                     .collect(Collectors.joining("\n") ) );
                     break;
                 case 4:
                     System.out.println(elektrotehnickiFakultet.dajProfesorePrekoNorme().stream()
-                            .map(s->s.toString())
+                            .map(Profesor::toString)
                             .collect(Collectors.joining("\n")));
                     break;
                 default : System.out.println("Pogresan Unos. Unesite ponovo!");
@@ -137,7 +139,7 @@ public class Main {
                     System.out.println("\nUnesite redni broj semestra:");
                     unos = new Scanner(System.in);
                     int semestar = unos.nextInt();
-                    var ugovor = elektrotehnickiFakultet.upisiStudenta(student, new CiklusStudija(1, "Prvi ciklus Racunarstva i informatike"), semestar);
+                     elektrotehnickiFakultet.upisiStudenta(student, new CiklusStudija(1, "Prvi ciklus Racunarstva i informatike"), semestar);
                     break;
                 case "2":
                     elektrotehnickiFakultet.sortirajProfesorePoNormi();
@@ -293,18 +295,18 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ugovor.dodajOcjenu(3,new Predmet(14,"Diskretna matematika",5,60),7);
-      ugovor.dodajOcjenu(1,new Predmet(1,"Calculus 1",6,75),6);
+        ugovor.dodajOcjenu(new Predmet(14,"Diskretna matematika",5,60),7);
+      ugovor.dodajOcjenu(new Predmet(1,"Calculus 1",6,75),6);
         student=new Student("Zejneb","Kost","18678");
          ugovor=elektrotehnickiFakultet.upisiStudenta(student,prviCiklus ,3);
-        ugovor.dodajOcjenu(3,new Predmet(14,"Diskretna matematika",5,60),8);
+        ugovor.dodajOcjenu(new Predmet(14,"Diskretna matematika",5,60),8);
         try {
             ugovor.dodajIzborniPredmet(new Predmet(17,"Numericki Algoritmi",5,50) );
         } catch (Exception e) {
             e.printStackTrace();
         }
         student=new Student("Eldar","Kurtovic","18788");
-        ugovor=elektrotehnickiFakultet.upisiStudenta(student,prviCiklus ,1);
+        elektrotehnickiFakultet.upisiStudenta(student,prviCiklus ,1);
     }
 
 

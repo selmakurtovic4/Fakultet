@@ -22,9 +22,7 @@ public class Semestar
         return obavezniPredmeti;
     }
 
-    public ArrayList<Predmet> getIzborniPredmeti() {
-        return izborniPredmeti;
-    }
+
     public void dodajObavezniPredmet(Predmet predmet){
         obavezniPredmeti.stream()
                 .filter(p->p.equals(predmet))

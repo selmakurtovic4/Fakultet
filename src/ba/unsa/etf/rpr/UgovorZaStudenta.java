@@ -1,13 +1,12 @@
 package ba.unsa.etf.rpr;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class UgovorZaStudenta {
-    private Student student;
+    private final Student student;
     private  CiklusStudija ciklusStudija;
     private final ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
     private int sifraSemestra;
@@ -37,23 +36,12 @@ public class UgovorZaStudenta {
     public UgovorZaStudenta(Student student) {
         this.student = student;
     }
-    public UgovorZaStudenta(){
 
-    }
-    public void izbaciPredmet(Predmet predmet){
-       izborniPredmeti.remove(predmet);
-    }
+
     public Student getStudent() {
         return student;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public CiklusStudija getCiklusStudija() {
-        return ciklusStudija;
-    }
 
     public void setCiklusStudija(CiklusStudija ciklusStudija) {
         this.ciklusStudija = ciklusStudija;
@@ -66,7 +54,7 @@ public class UgovorZaStudenta {
     public String dajPrepisOcjena(){
       return  prepisOcjena.toString();
     }
-    public void dodajOcjenu(Integer sifraSemestr,Predmet predmet, Integer ocjena) {
+    public void dodajOcjenu(Predmet predmet, Integer ocjena) {
 
        prepisOcjena.put(predmet,ocjena);
 
@@ -82,7 +70,7 @@ public class UgovorZaStudenta {
                 "\nCiklus studija: " + ciklusStudija.getNaziv() +
                 "\nSemestar: " + sifraSemestra +
                 "\nIzborniPredmeti: "  + izborniPredmeti
-                .stream().map(predmet -> predmet.toString())
+                .stream().map(Predmet::toString)
                 .collect(Collectors.joining(","));
     }
 

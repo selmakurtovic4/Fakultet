@@ -1,6 +1,6 @@
 package ba.unsa.etf.rpr;
 
-import java.util.Locale;
+
 import java.util.Objects;
 
 public class Profesor {
@@ -9,8 +9,8 @@ public class Profesor {
         return ime+" "+prezime;
     }
 
-    private String ime;
-    private String prezime;
+    private final String ime;
+    private final String prezime;
 
     public Profesor(String ime, String prezime) {
         this.ime = ime;

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class UgovorZaProfesora {
     private final Profesor profesor;
-    private ArrayList<Predmet> predmeti;
+    private final ArrayList<Predmet> predmeti;
     private Integer norma;
     private final Fakultet fakultet;
 
@@ -34,7 +34,7 @@ public class UgovorZaProfesora {
     }
    private boolean jeLiPredmetObavezan(Predmet predmet){
        return fakultet.getCiklusiStudija().stream()
-               .map(ciklusStudija -> ciklusStudija.getSemestri())
+               .map(CiklusStudija::getSemestri)
                .flatMap(ArrayList<Semestar>::stream)
                .anyMatch(semestar -> semestar.getObavezniPredmeti().contains(predmet));
 
@@ -55,19 +55,17 @@ public class UgovorZaProfesora {
     }
     public int dajBrojStudenata(){
         int broj=0;
-       for(var predmet: predmeti) {
-           if(jeLiPredmetObavezan(predmet))
-              broj+= fakultet.getUgovoriZaStudente()
+       for(var predmet: predmeti)
+           if (jeLiPredmetObavezan(predmet))
+               broj += fakultet.getUgovoriZaStudente()
                        .stream()
-                       .filter(ugovor->ugovor.dajSemestar().getObavezniPredmeti().contains(predmet))
+                       .filter(ugovor -> ugovor.dajSemestar().getObavezniPredmeti().contains(predmet))
                        .count();
-           else if(jeLiPredmetIzborniiZauzet(predmet))
-               broj+=fakultet.getUgovoriZaStudente()
+           else if (jeLiPredmetIzborniiZauzet(predmet))
+               broj += fakultet.getUgovoriZaStudente()
                        .stream()
-                       .filter(ugovor->ugovor.getIzborniPredmeti().contains(predmet))
+                       .filter(ugovor -> ugovor.getIzborniPredmeti().contains(predmet))
                        .count();
-
-        }
        return broj;
     }
     @Override
@@ -75,7 +73,7 @@ public class UgovorZaProfesora {
        String ispis= "UgovorZaProfesora:\n" +
                 "Ime:" + profesor.getIme() +
                 "\nPrezime: "+profesor.getPrezime();
-        ispis+= "\nVasi predmeti su: \n" + predmeti.stream().map(predmet -> predmet.toString()).collect(Collectors.joining("\n")) ;
+        ispis+= "\nVasi predmeti su: \n" + predmeti.stream().map(Predmet::toString).collect(Collectors.joining("\n")) ;
            ispis+=     "\nnorma:" + norma ;
 
            return ispis;

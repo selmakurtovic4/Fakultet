@@ -3,32 +3,14 @@ package ba.unsa.etf.rpr;
 import java.util.Objects;
 
 public class Student {
-    private String ime;
-    private String prezime;
-    private String indeks;
+    private final String ime;
+    private final String prezime;
+    private final String indeks;
     public String getIme() {
         return ime;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
 
-    public String getPrezime() {
-        return prezime;
-    }
-
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
-
-    public String getIndeks() {
-        return indeks;
-    }
-
-    public void setIndeks(String indeks) {
-        this.indeks = indeks;
-    }
 
     public Student(String ime, String prezime, String indeks) {
         this.ime = ime;
