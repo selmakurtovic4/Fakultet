@@ -4,10 +4,13 @@ import java.util.Locale;
 import java.util.Objects;
 
 public class Profesor {
+    @Override
+    public String toString() {
+        return ime+" "+prezime;
+    }
+
     private String ime;
     private String prezime;
-  //  private UgovorZaProfesora ugovorZaProfesora;
-
 
     public Profesor(String ime, String prezime) {
         this.ime = ime;
@@ -19,17 +22,12 @@ public class Profesor {
         return ime;
     }
 
-    public void setIme(String ime) {
-        this.ime = ime;
-    }
 
     public String getPrezime() {
         return prezime;
     }
 
-    public void setPrezime(String prezime) {
-        this.prezime = prezime;
-    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -46,12 +44,4 @@ public class Profesor {
     }
 
 
-
-    /*public UgovorZaProfesora getUgovorZaProfesora() {
-        return ugovorZaProfesora;
-    }
-
-    public void setUgovorZaProfesora(UgovorZaProfesora ugovorZaProfesora) {
-        this.ugovorZaProfesora = ugovorZaProfesora;
-    }*/
 }
