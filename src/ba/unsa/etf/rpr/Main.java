@@ -152,7 +152,16 @@ public class Main {
                     }
                     break;
                 case "3":
-
+                    elektrotehnickiFakultet.sortirajProfesorePoBrojuStudenata();
+                    System.out.println("Profesori soritrani po broju studenata: \n");
+                    for(var profesor: elektrotehnickiFakultet.getProfesori()) {
+                        try {
+                            UgovorZaProfesora ugovorZaProfesora=elektrotehnickiFakultet.dajUgovorZaProfesora(profesor);
+                            System.out.println( ugovorZaProfesora.getProfesor()+" "+ugovorZaProfesora.dajBrojStudenata()+"\n");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                     break;
                 case "4":
                     System.out.println(elektrotehnickiFakultet.getStudenti());
@@ -176,6 +185,38 @@ public class Main {
         return new Student(ime,prezime, indeks);
      }
     private static void dajMeniStudenta() {
+        for (; ; ) {
+            Student student = unosStudenta();
+
+            try {
+                UgovorZaStudenta ugovor = elektrotehnickiFakultet.dajUgovorZaStudenta(student);
+                System.out.println("Zdravo " + student.getIme() + "! " + "Izabrite opciju!\n");
+                for (; ; ) {
+                    System.out.println("0 Povratak u pocetni meni\n");
+                    System.out.println("1.Pregled mog ugovora\n");
+                    System.out.println("2.Prepis ocjena\n");
+                    Scanner unos = new Scanner(System.in);
+                    int izbor = unos.nextInt();
+                    switch (izbor) {
+                        case 0:
+                            return;
+                        case 1:
+
+                            System.out.println(ugovor.toString());
+                            break;
+                        case 2:
+                            System.out.println( ugovor.dajPrepisOcjena()) ;
+                            break;
+                        default:
+                            System.out.println("Pogresan Unos. Unesite ponovo!");
+                    }
+                }
+
+            } catch (Exception exception) {
+                System.out.println(exception.getMessage());
+            }
+
+        }
     }
 
 
@@ -224,7 +265,7 @@ public class Main {
         profesor=new Profesor("Naida","Mujic");
         elektrotehnickiFakultet.zaposliProfesora(profesor);
         elektrotehnickiFakultet.dodajNoviPredmetProfesoru(profesor,new Predmet(1,"Calculus 1",6,75));
-        elektrotehnickiFakultet.dodajNoviPredmetProfesoru(profesor,new Predmet(1,"Calculus 2",6,60) );
+        elektrotehnickiFakultet.dodajNoviPredmetProfesoru(profesor,new Predmet(8,"Calculus 2",6,60) );
         profesor=new Profesor("Zeljko","Juric");
         elektrotehnickiFakultet.zaposliProfesora(profesor);
         elektrotehnickiFakultet.dodajNoviPredmetProfesoru(profesor,new Predmet(14,"Diskretna matematika",5,60) );
@@ -252,15 +293,18 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ugovor.dodajOcjenu(3,new Predmet(14,"Diskretna matematika",5,60),7);
+      ugovor.dodajOcjenu(1,new Predmet(1,"Calculus 1",6,75),6);
         student=new Student("Zejneb","Kost","18678");
          ugovor=elektrotehnickiFakultet.upisiStudenta(student,prviCiklus ,3);
+        ugovor.dodajOcjenu(3,new Predmet(14,"Diskretna matematika",5,60),8);
         try {
             ugovor.dodajIzborniPredmet(new Predmet(17,"Numericki Algoritmi",5,50) );
         } catch (Exception e) {
             e.printStackTrace();
         }
         student=new Student("Eldar","Kurtovic","18788");
-         ugovor=elektrotehnickiFakultet.upisiStudenta(student,new CiklusStudija(1,"Prvi ciklus Racunarstva i informatike") ,1);
+        ugovor=elektrotehnickiFakultet.upisiStudenta(student,prviCiklus ,1);
     }
 
 
