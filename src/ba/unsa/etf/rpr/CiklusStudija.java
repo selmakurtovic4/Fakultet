@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 
 public class CiklusStudija {
-    private Integer sifra;
-    private String naziv;
-    private ArrayList<Semestar> semestri;
+    private final Integer sifra;
+    private final String naziv;
+    private  ArrayList<Semestar> semestri;
 
     public CiklusStudija(Integer sifra, String naziv) {
         this.sifra = sifra;
@@ -25,12 +25,13 @@ public class CiklusStudija {
     public ArrayList<Semestar> getSemestri() {
         return semestri;
     }
-    public Semestar dajSemestarPoSifri(Integer sifra){
+    public Semestar dajSemestarPoSifri(int sifra){
         return semestri
                 .stream()
                 .filter(s->s.getIdSemestra().equals(sifra))
                 .findFirst()
                 .get();
+
     }
     public void dodajSemestar(Semestar semestar){
         semestri.add(semestar);
