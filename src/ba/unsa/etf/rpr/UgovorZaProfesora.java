@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UgovorZaProfesora {
-    private Profesor profesor;
+    private final Profesor profesor;
     private ArrayList<Predmet> predmeti;
     private Integer norma;
-    private Fakultet fakultet;
+    private final Fakultet fakultet;
 
     public UgovorZaProfesora(Profesor profesor, Fakultet fakultet) {
         this.profesor = profesor;
@@ -48,16 +48,12 @@ public class UgovorZaProfesora {
    }
 
     public Integer getNorma() {
+        norma=izracunajNormu();
         return norma;
     }
 
     public Profesor getProfesor() {
         return profesor;
-    }
-
-    public void setPredmeti(ArrayList<Predmet> predmeti) {
-        this.predmeti = predmeti;
-       norma= izracunajNormu();
     }
 
     @Override
