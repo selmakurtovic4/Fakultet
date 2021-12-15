@@ -5,10 +5,10 @@ import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class Fakultet {
-    private ArrayList<UgovorZaProfesora>ugovoriZaProfesore;
-    private ArrayList<UgovorZaStudenta> ugovoriZaStudente;
-    private ArrayList<CiklusStudija> ciklusiStudija;
-    private ArrayList<Student> studenti;
+    private final ArrayList<UgovorZaProfesora>ugovoriZaProfesore;
+    private final ArrayList<UgovorZaStudenta> ugovoriZaStudente;
+    private final ArrayList<CiklusStudija> ciklusiStudija;
+    private final ArrayList<Student> studenti;
     private ArrayList<Profesor>profesori;
     public Fakultet(){
         ugovoriZaProfesore=new ArrayList<>();
@@ -29,15 +29,20 @@ public class Fakultet {
                         ()->{ throw new IllegalArgumentException("Ne postoji taj profesor!"); }     );
                 //.get().dodajPredmet(predmet);
     }
-    public void otpustiProfesora(Profesor profesor){
+    /*public void otpustiProfesora(Profesor profesor){
         ugovoriZaProfesore.stream()
                 .filter(ugovor->ugovor.getProfesor().equals(profesor))
                 .findFirst()
                 .ifPresent(ugovor->ugovoriZaProfesore.remove(ugovor));
-    }
-    public void upisiStudenta(Student student, CiklusStudija ciklusStudija,Integer sifraSemestra){
+    }*/
 
-
+    public UgovorZaStudenta upisiStudenta(Student student, CiklusStudija ciklusStudija,int sifraSemestra){
+     UgovorZaStudenta ugovor=new UgovorZaStudenta(student);
+     ugovor.setCiklusStudija(ciklusStudija);
+     ugovor.setSifraSemestra(sifraSemestra);
+     studenti.add(student);
+     ugovoriZaStudente.add(ugovor);
+     return ugovor;
     }
     public void dodajCiklusStudija( CiklusStudija ciklusStudija){
         ciklusiStudija.add(ciklusStudija);
@@ -66,9 +71,7 @@ public class Fakultet {
 
 
 
-    public ArrayList<UgovorZaProfesora> getUgovoriZaProfesore() {
-        return ugovoriZaProfesore;
-    }
+
 
     public ArrayList<UgovorZaStudenta> getUgovoriZaStudente() {
         return ugovoriZaStudente;
@@ -91,6 +94,6 @@ public class Fakultet {
                 .orElseThrow(()->new Exception("Nema tog profesora!"));
         }
 
-   // public ArrayList<Student> dajStudentePoPredmetu
+
 
 }
