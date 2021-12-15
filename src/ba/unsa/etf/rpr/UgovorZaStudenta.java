@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class UgovorZaStudenta {
     private Student student;
     private  CiklusStudija ciklusStudija;
     private final ArrayList<Predmet> izborniPredmeti=new ArrayList<>();
     private int sifraSemestra;
-    HashMap<Integer, Map<Predmet, Integer>> prepisOcjena;
+    Map<Predmet, Integer> prepisOcjena=new HashMap<>();
    public Integer dajSumuBodova(){
        int suma=izborniPredmeti.stream().reduce(0, (a,b)->a+ b.getBodovi(), Integer::sum);
        return suma+ ciklusStudija.dajSemestarPoSifri(sifraSemestra).getObavezniPredmeti()
@@ -26,8 +27,12 @@ public class UgovorZaStudenta {
            System.out.println("Imate tacno 30 bodova!");
        izborniPredmeti.add(predmet);
 
+    }
 
 
+
+    public Semestar dajSemestar(){
+       return ciklusStudija.dajSemestarPoSifri(sifraSemestra);
     }
     public UgovorZaStudenta(Student student) {
         this.student = student;
@@ -58,15 +63,27 @@ public class UgovorZaStudenta {
         return izborniPredmeti;
     }
 
-    public HashMap<Integer, Map<Predmet, Integer>> dajPrepisOcjena(){
-      return prepisOcjena;
+    public String dajPrepisOcjena(){
+      return  prepisOcjena.toString();
     }
-    public void dodajOcjenu(Predmet predmet, Integer ocjena) {
+    public void dodajOcjenu(Integer sifraSemestr,Predmet predmet, Integer ocjena) {
 
-       prepisOcjena.put(sifraSemestra, Collections.singletonMap(predmet,ocjena));
+       prepisOcjena.put(predmet,ocjena);
 
     }
     public void setSifraSemestra(Integer sifraSemestra) {
         this.sifraSemestra = sifraSemestra;
     }
+
+    @Override
+    public String toString() {
+        return "UgovorZaStudenta:\n" +
+                "student: " + student +
+                "\nCiklus studija: " + ciklusStudija.getNaziv() +
+                "\nSemestar: " + sifraSemestra +
+                "\nIzborniPredmeti: "  + izborniPredmeti
+                .stream().map(predmet -> predmet.toString())
+                .collect(Collectors.joining(","));
+    }
+
 }
