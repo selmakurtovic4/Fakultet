@@ -63,9 +63,16 @@ public class Fakultet {
     }
     public void sortirajProfesorePoNormi(){
               profesori=ugovoriZaProfesore.stream()
-                      .sorted(Comparator.comparingInt(UgovorZaProfesora::getNorma))
+                      .sorted(Comparator.comparingInt(ugovorZaProfesora1 -> ugovorZaProfesora1.getNorma()))
                       .map(ugovorZaProfesora -> ugovorZaProfesora.getProfesor())
                       .collect(Collectors.toCollection(ArrayList::new));
+
+    }
+    public void sortirajProfesorePoBrojuStudenata(){
+        profesori=ugovoriZaProfesore.stream()
+                .sorted(Comparator.comparingInt(ugovor -> ugovor.dajBrojStudenata()))
+                .map(ugovorZaProfesora -> ugovorZaProfesora.getProfesor())
+                .collect(Collectors.toCollection(ArrayList::new));
 
     }
 
@@ -93,7 +100,12 @@ public class Fakultet {
                 .filter(ugovor->ugovor.getProfesor().equals(profesor)).findFirst()
                 .orElseThrow(()->new Exception("Nema tog profesora!"));
         }
+  public UgovorZaStudenta dajUgovorZaStudenta(Student student) throws Exception{
+      return ugovoriZaStudente.stream()
+              .filter(ugovor->ugovor.getStudent().equals(student)).findFirst()
+              .orElseThrow(()->new Exception("Nema tog studenta!"));
 
+  }
 
 
 }
