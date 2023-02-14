@@ -1,1 +1,1 @@
-"# rpr21-zadaca2-selmakurtovic4" 
+Java Console App for College Management System
